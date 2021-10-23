@@ -9,7 +9,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const routes = require("./routes");
 const User = require("./models/User");
 
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || "https://notes-proxy.netlify.app/";
 
 const app = express();
 app.use(express.json());
@@ -36,6 +36,6 @@ const conn = mongoose.connection;
 conn.on("error", console.error.bind(console, "connection error:"));
 conn.once("open", () => {
   console.log("Connected to mongo database!");
-  app.listen(PORT, () => console.log(`App is listening on port ${PORT}!`));
+  app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
   app.use("/api", routes);
 });
